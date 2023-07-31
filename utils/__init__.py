@@ -3,16 +3,18 @@
 import time
 import loguru
 from pathlib import Path
+from utils.commons.singleton_control import singleton
 from utils.models.models import Config
 from utils.read_file_process.read_yaml_control import HandleYaml
 
 root = Path(__file__).resolve().parents[1]
 
 
+@singleton
 class Loggings:
     """日志操作方法"""
 
-    log_path = root / 'logs'
+    log_path = '../logs'
 
     def __new__(cls, *args, **kwargs):
         loggers = loguru.logger
