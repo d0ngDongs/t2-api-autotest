@@ -43,12 +43,6 @@ class RestClient:
         self.cookies, self.token = Authentication.cookie_token()
         self.client = httpx.Client(cookies=self.cookies, timeout=30, verify=False)
 
-    def __del__(self):
-        """
-        显式关闭会话
-        """
-        self.client.close()
-
     def res_log(func):
         @wraps(func)
         def wrapper(*args, **kwargs):

@@ -52,16 +52,16 @@ class DataHandler:
 
         if '{{' in value and '}}' in value and 'int.' not in value and 'str.' not in value:
             func = value[value.find('{') + 2:value.find('}')]
-            return value.replace('{{%s}}' % f'{func}', str(Mock(func)()))
+            return value.replace('{{%s}}' % func, str(Mock(func)()))
         elif '$cache.' in value:
             cache_name = value[value.find('.') + 1:]
             return self.cache_data.get(cache_name, None)
         elif 'int.' in value:
             func = value[value.find('{') + 2:value.find('}')]
-            return int(value.replace('{{%s}}' % f'{func}', str(Mock(func[func.find('.') + 1:])())))
+            return int(value.replace('{{%s}}' % func, str(Mock(func[func.find('.') + 1:])())))
         elif 'str.' in value:
             func = value[value.find('{') + 2:value.find('}')]
-            return str(value.replace('{{%s}}' % f'{func}', str(Mock(func[func.find('.') + 1:])())))
+            return str(value.replace('{{%s}}' % func, str(Mock(func[func.find('.') + 1:])())))
         else:
             return value
 

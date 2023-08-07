@@ -100,7 +100,7 @@ if not db_config:
 
 
 @pytest.fixture(autouse=True)
-def collection():
+def core():
     class Core:
         def __init__(self):
             self.requests = RestClient()
@@ -110,9 +110,5 @@ def collection():
 
     yield Core()
 
-
-@pytest.fixture()
-def core(collection):
-    yield collection
 
 
